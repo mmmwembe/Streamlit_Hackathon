@@ -17,7 +17,7 @@ class MongoDBConnection(ExperimentalBaseConnection[pymongo.MongoClient]):
             else:    
                 connection = self._secrets.local_connection_string  
         return pymongo.MongoClient(connection, server_api=ServerApi('1'))
-    @cache_data(ttl=3600)
+    # @cache_data(ttl=3600)
     def cursor(_self, **kwargs) -> pymongo.MongoClient:
         db = kwargs['db']
         col = kwargs['col']
