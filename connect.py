@@ -18,11 +18,11 @@ class MongoDBConnection(ExperimentalBaseConnection[pymongo.MongoClient]):
                 connection = self._secrets.local_connection_string  
         return pymongo.MongoClient(connection, server_api=ServerApi('1'))
     @cache_data(ttl=3600)
-    def cursor(self, **kwargs) -> pymongo.MongoClient:
+    def cursor(_self, **kwargs) -> pymongo.MongoClient:
         db = kwargs['db']
         col = kwargs['col']
         query = kwargs['query']
-        con = self._connect()
+        con = _self._connect()
         return con[db][col].find(query)
     
     def showData(self, **kwargs) -> pd.DataFrame:
