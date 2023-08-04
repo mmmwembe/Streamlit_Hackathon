@@ -6,4 +6,4 @@ conn = st.experimental_connection("mongodb", type=MongoDBConnection)
 query = {}
 cursor = conn.cursor(db="test", col="chats", query={})
 res = conn.showData(cursor=cursor)
-print(res)
+st.write(res)
