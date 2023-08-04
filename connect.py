@@ -28,6 +28,7 @@ class MongoDBConnection(ExperimentalBaseConnection[pymongo.MongoClient]):
     def showData(self, **kwargs) -> pd.DataFrame:
         data = []
         for i in kwargs['cursor']:
+            i['_id'] = str(i['_id'])
             data.append(i)
-        return pd.DataFrame(data)
+        return data
     
