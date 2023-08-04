@@ -23,12 +23,21 @@ class MongoDBConnection(ExperimentalBaseConnection[pymongo.MongoClient]):
         col = kwargs['col']
         query = kwargs['query']
         con = _self._connect()
-        return con[db][col].find(query)
+        cursor = con[db][col].find(query)
+        return con, cursor
     
+
+    def create(_self, **kwargs) -> pymongo.MongoClient:
+        db = kwargs['db']
+        col = kwargs['col']
+        query = kwargs['query']
+        con = kwargs['con']
+        return con[db][col].insert_one(query)
+        
     def showData(self, **kwargs) -> pd.DataFrame:
         data = []
         for i in kwargs['cursor']:
-            i['_id'] = str(i['_id'])
+            i.pop('_id', None)
             data.append(i)
         return data
     
