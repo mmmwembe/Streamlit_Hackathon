@@ -141,6 +141,11 @@ If you are working with localhost, then your `secrets.toml` file should look lik
 After cloning this repository, make a new python file and paste this following code
 
 ```from connect import MongoDBConnection
+import sys
+sys.path.insert(1, r"PATH_OF_<connect.py>")
+
+# Make sure to add this two lines👆🏻, otherwise you will get 'No Module found error'
+
 import streamlit as st
 conn = st.experimental_connection("mongodb", type=MongoDBConnection)
 con, cursor = conn.cursor(db="YOUR_DATABSE_NAME", col="COLLECTION_NAME", query={PUT YOUR MONGODB QUERY HERE FOR FINDING DOCUMENTS})
