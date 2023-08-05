@@ -138,7 +138,7 @@ If you are working with localhost, then your `secrets.toml` file should look lik
 
 # Connection components
 
-After cloning this repository, make a new python file and paste this following code
+After cloning this repository, make a new python file in a separate folder and paste this following code
 
 ```from connect import MongoDBConnection
 import sys
@@ -160,6 +160,12 @@ If you want to insert query to the database, make sure to use this function
 ```
 obj_creation = conn.create(db="YOUR_DATABSE_NAME", col="COLLECTION_NAME", query={PUT YOUR MONGODB QUERY HERE})
 ```
+If you want to show the data, make sure to use this function
+```
+document_results = conn.showData(cursor=cursor)
+```
+
+
 **Here you go! You have successfully built the connection application between `MongoDB` and `Streamlit` 🎈**
 
 
